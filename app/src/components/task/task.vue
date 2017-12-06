@@ -4,9 +4,12 @@
       :id="task.id" 
       :checked="task.checked ? 'checked' : ''" 
       :value="task.id" 
-      @click="onCheckItem">
+      @click="onCheckItem"
+      :disabled="task.isChange"
+      >
     <label :for="task.id">{{ task.title }}</label>
     <ul>
+      <li><b>isChange:</b> {{ task.isChange }}</li>
       <li><b>checked:</b> {{ task.checked }}</li>
       <li><b>created_at:</b> {{ task.created_at }}</li>
       <li><b>id:</b> {{ task.id }}</li>
@@ -24,10 +27,10 @@
     props: ['task', 'index'],
     methods: {
       onCheckItem(/* event */) {
+        this.task.isChange = true;
         this.$emit('checked', this.task, this.index);
       },
       removeItem(/* event */) {
-        // this.$emit('clicked', this.index);
       },
     },
   };

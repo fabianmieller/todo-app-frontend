@@ -50,9 +50,9 @@
       };
       axios.get('/tasks', config)
         .then((res) => {
-          this.debugtasks = res.data;
           /* eslint-disable no-restricted-syntax */
           for (let i = res.data.length - 1; i >= 0; i -= 1) {
+            res.data[i].isChange = false;
             if (res.data[i].checked) {
               this.checked_tasks.push(res.data[i]);
             } else {
@@ -63,16 +63,31 @@
     },
     methods: {
       onCheck(task, index) {
-        console.log(task.checked);
-        if (task.checked) {
-          task.checked = 0;
-          this.unchecked_tasks.push(task);
-          this.checked_tasks.splice(index, 1);
-        } else {
-          task.checked = 1;
-          this.checked_tasks.push(task);
-          this.unchecked_tasks.splice(index, 1);
-        }
+        task.checked = !task.checked;
+        this.updateTask(task, index);
+      },
+      updateTask(task, index) {
+        const config = {
+          headers: { Authorization: 'Bearer ' + this.$store.state.apiToken },
+        };
+        let updatedTask = {};
+        axios.put('/tasks/' + task.id, {
+          title: task.title,
+          checked: task.checked,
+        }, config)
+        .then((res) => {
+          console.log(task.isChange);
+          updatedTask = res.data;
+          updatedTask.isChange = false;
+          if (!task.checked) {
+            this.checked_tasks.splice(index, 1);
+            this.unchecked_tasks.push(updatedTask);
+          } else {
+            this.unchecked_tasks.splice(index, 1);
+            this.checked_tasks.push(updatedTask);
+          }
+        })
+        .catch(error => console.log('Error:' + error));
       },
     },
     computed: {
