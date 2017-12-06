@@ -39,6 +39,7 @@ module.exports = {
     'func-names': 'off',
     'no-param-reassign': 'off',
     'linebreak-style': 'off',
+    'no-unneeded-ternary': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }

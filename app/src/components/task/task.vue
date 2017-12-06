@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12">
+  <div class="task">
     <input type="checkbox" 
       :id="task.id" 
       :checked="task.checked ? 'checked' : ''" 
@@ -16,8 +16,8 @@
       <li><b>title:</b> {{ task.title }}</li>
       <li><b>updated_at:</b> {{ task.updated_at }}</li>
       <li><b>user_id:</b> {{ task.user_id }}</li>
+      <b-button :disabled="task.isChange" v-if="!task.checked" type="submit" size="md" class="mt-3" variant="danger" @click="removeItem">Delete</b-button>
     </ul>
-    <!-- <a href="javascript:void(0);" v-if="typ !== 'checked'" @click="removeItem">Remove</a> -->
   </div>
 </template>
 
@@ -31,6 +31,8 @@
         this.$emit('checked', this.task, this.index);
       },
       removeItem(/* event */) {
+        this.task.isChange = true;
+        this.$emit('delete', this.task, this.index);
       },
     },
   };
