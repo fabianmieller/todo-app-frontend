@@ -36,6 +36,8 @@ module.exports = {
     // 'no-useless-concat': 'off',
     'prefer-template': 'off',
     'no-console': 'off',
+    'func-names': 'off',
+    'no-param-reassign': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }
