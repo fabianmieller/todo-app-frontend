@@ -17,10 +17,10 @@
           <b-button type="submit" size="md" variant="primary">Submit</b-button>
         </div>
       </div>
-      <div class="col-12 col-md-6">
+      <!-- <div class="col-12 col-md-6">
         <label for="category-input">Kategorien: (Mehrfachauswahl möglich)</label>
         <b-form-select multiple disabled id="category-input" :select-size="4" v-model="selected" :options="options"></b-form-select>
-      </div>
+      </div> -->
     </b-form>
   </div>
 </template>

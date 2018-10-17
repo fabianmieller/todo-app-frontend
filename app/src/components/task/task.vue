@@ -16,7 +16,8 @@
       <li><b>title:</b> {{ task.title }}</li>
       <li><b>updated_at:</b> {{ task.updated_at }}</li>
       <li><b>user_id:</b> {{ task.user_id }}</li>
-      <b-button :disabled="task.isChange" v-if="!task.checked" type="submit" size="md" class="mt-3" variant="danger" @click="removeItem">Delete</b-button>
+      <b-button :disabled="task.isChange" type="submit" size="md" class="mt-3" variant="danger" @click="removeItem">Delete</b-button>
+      <!-- <b-button :disabled="task.isChange" v-if="!task.checked" type="submit" size="md" class="mt-3" variant="danger" @click="removeItem">Delete</b-button> -->
     </ul>
   </div>
 </template>
